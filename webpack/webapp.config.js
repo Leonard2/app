@@ -4,7 +4,7 @@ const BaseConfig = require('./base.config');
 
 module.exports = Object.assign(BaseConfig, {
   entry: {
-    app: Path.resolve(__dirname, '../res/webapp/main.ts')//
+    app: Path.resolve(__dirname, '../src/webapp/app/webapp-app.module.ts')
   },
   output: {
     path: Path.resolve(__dirname, '../build/webapp/assets')

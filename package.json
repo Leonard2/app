@@ -93,12 +93,12 @@
   "scripts": {
     "lint": "echo Checking for lint errors... && eslint ./src --ext .ts && stylelint \"./src/**/*.scss\"",
     "lint:fix": "echo Checking and fixing lint errors... && eslint ./src --fix --ext .ts && stylelint \"./src/**/*.scss\" --fix",
-    "webpack:web" : "echo Building as simple web application to ./build/webapp... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode development",
-	"build:web" : "npm run lint:fix && npm run webpack:web"
-	"postbuild:web" : "echo Done",
-	"watch:web" : "npm run webpack:web -- --watch"
-	"package:web" : "npm run lint:fix && echo Packaging simple web application... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode production && node ./scripts/create-zip-package.js webapp", /////////////////////////////////////
-	"postpackage:web" "echo Package saved to ./dist",
+    "webpack:web": "echo Building as simple web application to ./build/webapp... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode development",
+    "build:web": "npm run lint:fix && npm run webpack:web",
+    "postbuild:web": "echo Done",
+    "watch:web": "npm run webpack:web -- --watch",
+    "package:web": "npm run lint:fix && echo Packaging simple web application... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode production && node ./scripts/create-zip-package.js webapp", /////////////////////////////////////
+    "postpackage:web": "echo Package saved to ./dist",
     "webpack:chromium": "echo Building platform CHROMIUM to ./build/chromium... && rimraf ./build/chromium && webpack --config ./webpack/chromium.config.js --mode development",
     "build:chromium": "npm run lint:fix && npm run webpack:chromium",
     "postbuild:chromium": "echo Done",

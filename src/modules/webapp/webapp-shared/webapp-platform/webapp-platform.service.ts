@@ -360,7 +360,7 @@ export default class WebAppPlatformService implements PlatformService {
   initI18n(): ng.IPromise<void> {
     let i18nCode = 'en';
     return this.$q<any>((resolve, reject) => {
-      navigator.globalization.getPreferredLanguage(resolve, reject);
+      const lang = navigator.language;
     })
       .then((language) => {
         if (!language?.value) {

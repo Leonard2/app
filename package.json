@@ -97,7 +97,7 @@
     "build:web": "npm run lint:fix && npm run webpack:web",
     "postbuild:web": "echo Done",
     "watch:web": "npm run webpack:web -- --watch",
-    "package:web": "npm run lint:fix && echo Packaging simple web application... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode production && node ./scripts/create-zip-package.js webapp", /////////////////////////////////////
+    "package:web": "npm run lint:fix && echo dDDEad && echo Packaging simple web application... && rimraf ./build/webapp && webpack --config ./webpack/webapp.config.js --mode production && node ./scripts/create-zip-package.js webapp",
     "postpackage:web": "echo Package saved to ./dist",
     "webpack:chromium": "echo Building platform CHROMIUM to ./build/chromium... && rimraf ./build/chromium && webpack --config ./webpack/chromium.config.js --mode development",
     "build:chromium": "npm run lint:fix && npm run webpack:chromium",

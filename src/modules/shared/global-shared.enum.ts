@@ -18,7 +18,8 @@ enum MessageCommand {
 enum PlatformType {
   Android = 'android',
   Chromium = 'chromium',
-  Firefox = 'firefox'
+  Firefox = 'firefox',
+  Web = 'web'
 }
 
 export { BrowserName, MessageCommand, PlatformType };

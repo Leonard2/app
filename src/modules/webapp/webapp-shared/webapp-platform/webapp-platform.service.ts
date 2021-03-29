@@ -359,15 +359,14 @@ export default class WebAppPlatformService implements PlatformService {
 
   initI18n(): ng.IPromise<void> {
     let i18nCode = 'en';
-    return this.$q<any>((resolve, reject) => {
-      return navigator.language;
-    })
+    return this.$q
+      .resolve(navigator.language)
       .then((language) => {
-        if (!language?.value) {
+        if (!language) {
           this.logSvc.logWarning('Couldn’t get preferred language');
           return;
         }
-        i18nCode = language.value.split('-')[0];
+        i18nCode = language.split('-')[0];
       })
       .then(() => {
         return this.$http.get<I18nObject[]>(`./assets/strings_${i18nCode}.json`).then((response) => {

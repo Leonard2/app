@@ -68,7 +68,7 @@ export default class WebAppAppHelperService extends AppHelperService {
 
   copyTextToClipboard(text: string): ng.IPromise<void> {
     return this.$q<void>((resolve, reject) => {
-      //window.cordova.plugins.clipboard.copy(text, resolve, reject);////////////////////////
+      // window.cordova.plugins.clipboard.copy(text, resolve, reject);////////////////////////
     }).then(() => {});
   }
 
@@ -116,7 +116,7 @@ export default class WebAppAppHelperService extends AppHelperService {
   }
 
   exitApp(): void {
-    //window.cordova.plugins.exit();/////////////////
+    // window.cordova.plugins.exit();/////////////////
   }
 
   getCurrentSync(): ng.IPromise<Sync> {

@@ -83,7 +83,7 @@ export default class WebAppAppAlertComponent {
       }
     };
     const failure = (errMessage) => {
-      this.$exceptionHandler(new Exception('Failed to create snackbar'), errMessage);//////////
+      this.$exceptionHandler(new Exception('Failed to create snackbar'), errMessage); /// ///////
     };
 
     // Ensure soft keyboard is hidden
@@ -92,6 +92,6 @@ export default class WebAppAppAlertComponent {
     }
 
     // Display snackbar
-    //window.cordova.plugins.snackbar.create(text, 5000, bgColor, textColor, 3, alert.action, success, failure);//////////////////
+    // window.cordova.plugins.snackbar.create(text, 5000, bgColor, textColor, 3, alert.action, success, failure);//////////////////
   }
 }

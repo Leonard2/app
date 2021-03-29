@@ -6,7 +6,8 @@ import V160UpgradeProviderService from '../../../shared/upgrade/v1.6.0-upgrade-p
 
 @autobind
 @Injectable('V160UpgradeProviderService')
-export default class WebAppV160UpgradeProviderService extends V160UpgradeProviderService {///////////////////////////
+export default class WebAppV160UpgradeProviderService extends V160UpgradeProviderService {
+  /// ////////////////////////
   static $inject = ['$q', 'BookmarkHelperService', 'PlatformService', 'StoreService', 'UtilityService'];
 
   getAllFromNativeStorage(): ng.IPromise<any> {

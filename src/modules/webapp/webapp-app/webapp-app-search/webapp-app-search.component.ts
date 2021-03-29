@@ -16,8 +16,8 @@ import SettingsService from '../../../shared/settings/settings.service';
 import { SyncType } from '../../../shared/sync/sync.enum';
 import UtilityService from '../../../shared/utility/utility.service';
 import WorkingService from '../../../shared/working/working.service';
-import { WebAppAlert } from '../webapp-app.interface';
 import WebAppAppHelperService from '../shared/webapp-app-helper/webapp-app-helper.service';
+import { WebAppAlert } from '../webapp-app.interface';
 
 @autobind
 @Component({

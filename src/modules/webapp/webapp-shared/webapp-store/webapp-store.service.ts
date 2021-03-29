@@ -5,11 +5,12 @@ import * as Exceptions from '../../../shared/exception/exception';
 import { StoreKey } from '../../../shared/store/store.enum';
 import { StoreContent, TraceLogItem } from '../../../shared/store/store.interface';
 import StoreService from '../../../shared/store/store.service';
-import { NativeStorageError, Table, TraceLogColumn } from './webapp-store.enum';/////////////////////////////
+import { NativeStorageError, Table, TraceLogColumn } from './webapp-store.enum'; /// //////////////////////////
 
 @autobind
 @Injectable('StoreService')
-export default class WebAppStoreService extends StoreService {///////////////////////////
+export default class WebAppStoreService extends StoreService {
+  /// ////////////////////////
   appRowId = 1;
   db: any;
   dbName = 'xbs.db';

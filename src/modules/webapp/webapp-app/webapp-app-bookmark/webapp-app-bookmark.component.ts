@@ -19,8 +19,8 @@ import SyncEngineService from '../../../shared/sync/sync-engine/sync-engine.serv
 import UtilityService from '../../../shared/utility/utility.service';
 import WorkingService from '../../../shared/working/working.service';
 import WebAppPlatformService from '../../webapp-shared/webapp-platform/webapp-platform.service';
-import { WebAppAlert } from '../webapp-app.interface';
 import WebAppAppHelperService from '../shared/webapp-app-helper/webapp-app-helper.service';
+import { WebAppAlert } from '../webapp-app.interface';
 
 @autobind
 @Component({

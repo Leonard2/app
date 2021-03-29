@@ -1,4 +1,3 @@
-import angular from 'angular';
 import { Component, OnInit } from 'angular-ts-decorators';
 import autobind from 'autobind-decorator';
 import AppMainComponent from '../../app/app-main/app-main.component';
@@ -10,9 +9,7 @@ import AppMainComponent from '../../app/app-main/app-main.component';
   styles: [require('./webapp-app.component.scss')],
   template: require('../../app/app-main/app-main.component.html')
 })
-
 export default class WebAppAppComponent extends AppMainComponent implements OnInit {
-
   static $inject = [
     '$q',
     '$scope',

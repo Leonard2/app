@@ -120,7 +120,7 @@ export default class WebAppPlatformService implements PlatformService {
   }
 
   disableBackgroundSync(): void {
-    return this.methodNotApplicable();
+    // return this.methodNotApplicable();
   }
 
   disableSync(): ng.IPromise<any> {
@@ -132,7 +132,7 @@ export default class WebAppPlatformService implements PlatformService {
   }
 
   enableBackgroundSync(): void {
-    return this.methodNotApplicable();
+    // return this.methodNotApplicable();
   }
 
   enableNativeEventListeners(): ng.IPromise<void> {
@@ -475,7 +475,8 @@ export default class WebAppPlatformService implements PlatformService {
     return this.methodNotApplicable();
   }
 
-  urlIsSupported(): boolean {///////////////////////////
+  urlIsSupported(): boolean {
+    /// ////////////////////////
     // Andmroid supports all urls
     return true;
   }

@@ -25,7 +25,7 @@ module.exports = Object.assign(BaseConfig, {
       patterns: [
         {
           from: Path.resolve(__dirname, '../res/strings'),
-          to: './assets/strings_[name].json',
+          to: './strings_[name].json',
           toType: 'template',
           transform(buffer) {
             const i18n = JSON.parse(buffer.toString()); //

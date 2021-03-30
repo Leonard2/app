@@ -154,7 +154,7 @@ export default class WebAppPlatformService implements PlatformService {
   }
 
   getAppVersion(): ng.IPromise<string> {
-    return this.$q.resolve().then(window.cordova.getAppVersion.getVersionNumber);
+    return this.$q.resolve('7');
   }
 
   getCurrentUrl(): ng.IPromise<string> {

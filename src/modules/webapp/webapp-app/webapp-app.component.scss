@@ -40,10 +40,13 @@ app-settings {
 }
 
 .view {
+  height: 100%;
   margin: 0 auto;
+  max-height: 100%;
   width: 64rem; // //////
 
   .view-content {
-    height: 37rem;
+    height: 100%;
+    overflow: scroll;
   }
 }

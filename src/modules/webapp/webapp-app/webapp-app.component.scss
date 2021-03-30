@@ -1,5 +1,7 @@
 @import '../../../styles/modules/all';
 
+height: 100%;
+
 body {
   overflow: hidden;
 }
@@ -11,7 +13,7 @@ app-search {
 
     .view-content {
       height: auto;
-      max-height: 37rem;
+      //max-height: 37rem;
 
       .header-panel {
         display: flex;

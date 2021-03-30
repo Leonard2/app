@@ -358,6 +358,7 @@ export default class WebAppPlatformService implements PlatformService {
   }
 
   initI18n(): ng.IPromise<void> {
+    // ////////////////////////////////////////
     let i18nCode = 'en';
     return this.$q
       .resolve(navigator.language)

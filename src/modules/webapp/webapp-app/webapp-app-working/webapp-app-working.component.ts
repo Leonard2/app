@@ -1,8 +1,9 @@
-import { Component, Output } from 'angular-ts-decorators';
+import { Component, Input, Output } from 'angular-ts-decorators';
 import autobind from 'autobind-decorator';
 import AppHelperService from '../../../app/shared/app-helper/app-helper.service';
 import AlertService from '../../../shared/alert/alert.service';
 import { PlatformService } from '../../../shared/global-shared.interface';
+import { SyncType } from '../../../shared/sync/sync.enum';
 import UtilityService from '../../../shared/utility/utility.service';
 import { WorkingContext } from '../../../shared/working/working.enum';
 import WorkingService from '../../../shared/working/working.service';
@@ -10,7 +11,9 @@ import WorkingService from '../../../shared/working/working.service';
 @autobind
 @Component({
   controllerAs: 'vm',
-  selector: 'appWorking'
+  selector: 'appWorking',
+  styles: [require('./webapp-app-working.component.scss')],
+  template: require('./webapp-app-working.component.html')
 })
 export default class WebAppAppWorkingComponent {
   Strings = require('../../../../../res/strings/en.json');
@@ -23,8 +26,12 @@ export default class WebAppAppWorkingComponent {
   workingSvc: WorkingService;
 
   currentContext: WorkingContext;
+  enableCancel: boolean;
   message: string;
+  show = false;
   currentTimeout: ng.IPromise<void>;
+
+  @Input() fullViewMode: boolean;
 
   @Output() cancelAction: () => any;
 
@@ -53,31 +60,48 @@ export default class WebAppAppWorkingComponent {
     this.utilitySvc = UtilitySvc;
     this.workingSvc = WorkingSvc;
 
-    // Watch working service for status changes to display spinner dialog
+    // Watch working service for status changes to display as panel
     $scope.$watch(
       () => WorkingSvc.status,
       (newVal, oldVal) => {
         if (newVal !== oldVal) {
-          if (newVal.activated) {
-            this.showSpinnerDialog(newVal.context);
-          } else {
-            this.hideSpinnerDialog();
+          if (this.show !== newVal.activated) {
+            if (newVal.activated) {
+              this.showPanel(newVal.context);
+            } else {
+              this.hidePanel();
+            }
           }
+        }
+      }
+    );
+
+    // Watch for view model changes to display as view
+    $scope.$watch(
+      () => this.fullViewMode,
+      (newVal, oldVal) => {
+        if (newVal !== oldVal && newVal === true) {
+          this.showView();
         }
       }
     );
   }
 
-  hideSpinnerDialog(): void {
+  cancelSync(): void {
+    this.cancelAction()().then(this.appHelperSvc.switchView);
+  }
+
+  hidePanel(): void {
     if (this.currentTimeout) {
       this.$timeout.cancel(this.currentTimeout);
     }
     this.currentContext = undefined;
-    window.SpinnerDialog.hide();
+    this.currentTimeout = undefined;
+    this.show = false;
   }
 
-  showSpinnerDialog(context?: WorkingContext): void {
-    // Return if spinner dialog already displayed
+  showPanel(context?: WorkingContext): void {
+    // Return if working panel already displayed
     if (this.currentContext) {
       return;
     }
@@ -87,48 +111,30 @@ export default class WebAppAppWorkingComponent {
 
     // Set displayed message based on context
     this.currentContext = context;
+    let message: string;
     switch (context) {
-      case WorkingContext.DelayedSyncing:
-        this.currentTimeout = this.$timeout(() => {
-          window.SpinnerDialog.show(
-            null,
-            `${this.platformSvc.getI18nString(this.Strings.View.Working.Syncing)}…`,
-            true
-          );
-        }, 250);
-        break;
       case WorkingContext.Restoring:
-        this.currentTimeout = this.$timeout(() => {
-          window.SpinnerDialog.show(
-            null,
-            `${this.platformSvc.getI18nString(this.Strings.View.Working.Restoring)}…`,
-            true
-          );
-        });
+        message = this.platformSvc.getI18nString(this.Strings.View.Working.Restoring);
         break;
-      case WorkingContext.RetrievingMetadata:
-        window.SpinnerDialog.hide();
-        this.currentTimeout = this.$timeout(() => {
-          window.SpinnerDialog.show(
-            null,
-            this.platformSvc.getI18nString(this.Strings.Alert.GetMetadata.Message),
-            () => {
-              window.SpinnerDialog.hide();
-              this.currentContext = undefined;
-              this.cancelAction()();
-            }
-          );
-        }, 250);
+      case WorkingContext.Reverting:
+        message = this.platformSvc.getI18nString(this.Strings.View.Working.Reverting);
         break;
       case WorkingContext.Syncing:
       default:
-        this.currentTimeout = this.$timeout(() => {
-          window.SpinnerDialog.show(
-            null,
-            `${this.platformSvc.getI18nString(this.Strings.View.Working.Syncing)}…`,
-            true
-          );
-        });
+        message = this.platformSvc.getI18nString(this.Strings.View.Working.Syncing);
     }
+
+    this.currentTimeout = this.$timeout(() => {
+      this.enableCancel = false;
+      this.message = message;
+      this.show = true;
+    });
+  }
+
+  showView(): void {
+    this.message = this.platformSvc.getI18nString(this.Strings.View.Working.Syncing);
+    this.appHelperSvc.getCurrentSync().then((currentSync) => {
+      this.enableCancel = currentSync?.type === SyncType.Remote || false;
+    });
   }
 }

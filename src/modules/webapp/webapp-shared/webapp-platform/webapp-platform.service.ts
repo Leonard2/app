@@ -154,7 +154,7 @@ export default class WebAppPlatformService implements PlatformService {
   }
 
   getAppVersion(): ng.IPromise<string> {
-    return this.$q.resolve('7');
+    return this.$q.resolve('1.5.2');
   }
 
   getCurrentUrl(): ng.IPromise<string> {

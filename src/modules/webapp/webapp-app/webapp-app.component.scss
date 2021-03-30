@@ -6,17 +6,19 @@
 }
 
 body {
+  height: 100%;
   overflow: hidden;
 }
 
 app-search {
   &.view {
-    height: auto;
+    //height: auto;
     //width: 38rem;
 
     .view-content {
-      height: auto;
+      //height: auto;
       //max-height: 37rem;
+      //overflow: scroll;
 
       .header-panel {
         display: flex;

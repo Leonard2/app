@@ -7,7 +7,6 @@ body {
 app-search {
   &.view {
     height: auto;
-    margin: 0 auto;
     //width: 38rem;
 
     .view-content {
@@ -39,6 +38,7 @@ app-settings {
 }
 
 .view {
+  margin: 0 auto;
   width: 64rem; // //////
 
   .view-content {
